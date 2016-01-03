@@ -3,26 +3,40 @@
 //This page is requested by the JavaScript, it updates the pin's status and then print it
 //Getting and using values
 if (isset ( $_GET["pic"] )) {
+        //read in pic and cmd flags
+        //?pic=1&cmd=0 
 	$pic = strip_tags ($_GET["pic"]);
-	
+	$cmd = strip_tags ($_GET["cmd"]);
 	//test if value is a number
 	if ( (is_numeric($pic)) && ($pic <= 7) && ($pic >= 0) ) {
-		
-		//set the gpio's mode to output		
+
+		//set the gpio's mode to output
 		system("gpio mode ".$pic." out");
 		//reading pin's status
 		exec ("gpio read ".$pic, $status, $return );
-		//set the gpio to high/low
-		if ($status[0] == "0" ) { $status[0] = "1"; }
-		else if ($status[0] == "1" ) { $status[0] = "0"; }
+
+		//toggle the gpio to high/low
+		if ($status[0] == "0" ) { 
+			$status[0] = "1";
+		} else if ($status[0] == "1" ) { 
+			$status[0] = "0"; 
+		}
+
+                //check for commanded status flag
+		if ($cmd == "on" ) { 
+			$status[0] = "1"; 
+		}elseif ($cmd == "off") { 
+			$status[0] = "0";  
+		}
+
 		system("gpio write ".$pic." ".$status[0] );
 		//reading pin's status
 		exec ("gpio read ".$pic, $status, $return );
 		//print it to the client on the response
 		echo($status[0]);
-		
-	}
-	else { echo ("fail"); }
-} //print fail if cannot use values
-else { echo ("fail"); }
+
+	} else { echo ("fail"); }
+
+//print fail if cannot use values
+} else { echo ("fail"); }
 ?>
