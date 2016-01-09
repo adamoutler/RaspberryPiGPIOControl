@@ -2,6 +2,19 @@
 //TheFreeElectron 2015, http://www.instructables.com/member/TheFreeElectron/
 //This page is requested by the JavaScript, it updates the pin's status and then print it
 //Getting and using values
+
+
+$fs=fopen("gpio.status" ,"r+");
+if(!flock($fs, LOCK_EX | LOCK_NB)) {
+    echo 'Unable to obtain lock';
+    exit(-1);
+}
+$status_array=unserialize(fread($fs));
+if (count($staus_array) < 7) {
+   $status_array=array(0,0,0,0,0,0,0,0);
+}
+
+
 if (isset ( $_GET["pic"] )) {
         //read in pic and cmd flags
         //?pic=1&cmd=0 
@@ -30,6 +43,7 @@ if (isset ( $_GET["pic"] )) {
 		}
 
 		system("gpio write ".$pic." ".$status[0] );
+                $status_array[$pic]=$status[0];
 		//reading pin's status
 		exec ("gpio read ".$pic, $status, $return );
 		//print it to the client on the response
@@ -37,6 +51,9 @@ if (isset ( $_GET["pic"] )) {
 
 	} else { echo ("fail"); }
 
+fwrite($fs, serialize($status_array));
+flock($fs, LOCK_UN);
+fclose($fs);
 //print fail if cannot use values
 } else { echo ("fail"); }
 ?>
