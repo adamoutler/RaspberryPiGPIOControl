@@ -9,7 +9,7 @@
     <body>
 	<?php
 	$val_array = array(0,0,0,0,0,0,0,0);
-        $name_array = array("Router","Modem","Server","3","4","5","reserved","8");
+        $name_array = array("Router","Pi Screen","Modem","Router","4","5","reserved","8");
 	//this php script generate the first page in function of the file
 	for ( $i= 0; $i<8; $i++) {
 		//set the pin's mode to output and read them

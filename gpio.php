@@ -3,14 +3,14 @@
 //This page is requested by the JavaScript, it updates the pin's status and then print it
 //Getting and using values
 
-
-$fs=fopen("gpio.status" ,"r+");
-if(!flock($fs, LOCK_EX | LOCK_NB)) {
-    echo 'Unable to obtain lock';
+$file="gpio.status";
+$fs=fopen($file ,"r+");
+if(!flock($fs, LOCK_EX)) {
+    echo 'Unable to obtain lock or find file $file';
     exit(-1);
 }
-$status_array=unserialize(fread($fs));
-if (count($staus_array) < 7) {
+$status_array=unserialize(fread($fs, filesize($file)));
+if (count($status_array) < 7) {
    $status_array=array(0,0,0,0,0,0,0,0);
 }
 
@@ -51,6 +51,7 @@ if (isset ( $_GET["pic"] )) {
 
 	} else { echo ("fail"); }
 
+fseek($fs,0);
 fwrite($fs, serialize($status_array));
 flock($fs, LOCK_UN);
 fclose($fs);
