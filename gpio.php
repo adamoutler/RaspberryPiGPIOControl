@@ -46,6 +46,8 @@ if (isset ( $_GET["pic"] )) {
                 $status_array[$pic]=$status[0];
 		//reading pin's status
 		exec ("gpio read ".$pic, $status, $return );
+                $ip=$_SERVER['REMOTE_ADDR'];
+                exec ("wall $ip set output $pic set to $status[0]");
 		//print it to the client on the response
 		echo($status[0]);
 
