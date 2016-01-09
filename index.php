@@ -1,6 +1,11 @@
 ﻿<!DOCTYPE html>
 <!--TheFreeElectron 2015, http://www.instructables.com/member/TheFreeElectron/ -->
-
+<?php
+    $url1=$_SERVER['REQUEST_URI'];
+    $refresh= strip_tags ( $_GET["refresh"]);   
+    if ( empty($refresh) ){ $refresh = 10; }
+ header("Refresh: $refresh; URL=$url1");
+?>
 <html>
     <head>
         <meta charset="utf-8" />

@@ -48,7 +48,7 @@ var data = 0;
 		}
 		//else 
 		else if (request.readyState == 4 && request.status != 200 && request.status != 500 ) { 
-			alert ("Something went wrong!");
+//			alert ("Could not perform request.");
 			return ("fail"); }
 	}	
 	
