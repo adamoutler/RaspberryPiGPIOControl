@@ -27,10 +27,10 @@ var data = 0;
 			data = request.responseText;
 			//update the index pic
 			if ( !(data.localeCompare("0")) ){
-				Buttons[pic].src = "data/img/red/red_"+pic+".jpg";
+                                $(Buttons[pic]).css('background-image', 'url(data/img/red.jpg)');
 			}
 			else if ( !(data.localeCompare("1")) ) {
-				Buttons[pic].src = "data/img/green/green_"+pic+".jpg";
+                                $(Buttons[pic]).css('background-image', 'url(data/img/green.jpg)');
 			}
 			else if ( !(data.localeCompare("fail"))) {
 				alert ("Something went wrong!" );
