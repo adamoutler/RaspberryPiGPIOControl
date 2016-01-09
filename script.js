@@ -27,10 +27,11 @@ var data = 0;
 			data = request.responseText;
 			//update the index pic
 			if ( !(data.localeCompare("0")) ){
-                                $(Buttons[pic]).css('background-image', 'url(data/img/red.jpg)');
+                            document.getElementById("button_"+pic).className = "redImageContainer";
 			}
 			else if ( !(data.localeCompare("1")) ) {
-                                $(Buttons[pic]).css('background-image', 'url(data/img/green.jpg)');
+                            document.getElementById("button_"+pic).className = "greenImageContainer";
+
 			}
 			else if ( !(data.localeCompare("fail"))) {
 				alert ("Something went wrong!" );

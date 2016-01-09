@@ -1,0 +1,40 @@
+.redImageContainer {
+    width:220px;
+    height:270px;
+    background-image: url("data/img/red.jpg");
+    float:left;
+    position:relative;
+    display:inline-block;
+}
+.greenImageContainer {
+    width:220px;
+    height:270px;
+    background-image: url("data/img/green.jpg");
+    float:left;
+    position:relative;
+    display:table;
+}
+
+.caption {
+    text-align: center;
+    color: white;
+    font: bold 34px/45px Ubuntu, Sans-Serif;
+    letter-spacing: 1px;
+    background: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 190px;
+    left: 0px;
+    width:250px;
+    display:table;
+    margin: 0 auto;
+}
+body {
+    background-color: black;
+}
+
+html,body{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+}
