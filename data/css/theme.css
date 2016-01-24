@@ -1,7 +1,7 @@
 .redImageContainer {
     width:220px;
     height:270px;
-    background-image: url("data/img/red.jpg");
+    background-image: url("../img/red.jpg");
     float:left;
     position:relative;
     display:inline-block;
@@ -9,7 +9,7 @@
 .greenImageContainer {
     width:220px;
     height:270px;
-    background-image: url("data/img/green.jpg");
+    background-image: url("../img/green.jpg");
     float:left;
     position:relative;
     display:table;
