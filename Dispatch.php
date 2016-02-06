@@ -1,5 +1,5 @@
 <?php
-require('Settings.php');
+require('Initialize.php');
 
 //lock the settings file
 $file="data/gpio.status";
@@ -29,6 +29,13 @@ foreach ($argv as $arg) {
     }
 
 
+function doScript($target, $fs){
+    
+    unlockStatusFile($fs);
+    $script=$target["script"];
+    exec($script);
+}
+
 
 
 function  dispatch($ettings, $fs){
@@ -37,9 +44,13 @@ function  dispatch($ettings, $fs){
         $name=$_GET["target"];
         if (array_key_exists($name , $ettings)){
             $target=$ettings["$name"];
-            if ($target["type"] == "gpio"){
+            $type=$target["type"];
+            if ($type == "gpio"){
                 require ("GPIO.php");
                 gpio($ettings, $target);
+                unlockStatusFile($fs);
+            }else if ($type =="script"){
+                doScript($target,$fs);
             }else {
                 echo "I can't handle anything except GPIOs right now  ".$target['type']."<br>\n";
             }
@@ -53,5 +64,4 @@ function  dispatch($ettings, $fs){
 
 include_once('writeTimestamp.php');
 dispatch($ettings, $fs);
-unlockStatusFile($fs);
 writeTimeStamp();

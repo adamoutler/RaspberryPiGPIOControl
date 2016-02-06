@@ -2,15 +2,15 @@
 //JavaScript, uses pictures as buttons, sends and receives values to/from the Rpi
 
 
-function change_pin(pic) {
+function target(target) {
     var data = 0;
-    //send the pic number to gpio.php for changes
+    //send the target number to gpio.php for changes
     var request = new XMLHttpRequest();
-    request.open("GET", "Dispatch.php?target=" + pic, true);
+    request.open("GET", "Dispatch.php?target=" + target, true);
     request.send(null);
     //receiving informations
-    document.getElementById(pic).className = 
-         (document.getElementById(pic).className == "greenImageContainer" ? "redImageContainer" : "greenImageContainer");
+    document.getElementById(target).className = 
+         (document.getElementById(target).className == "greenImageContainer" ? "redImageContainer" : "greenImageContainer");
     request.onreadystatechange = function() {
         var request = new XMLHttpRequest();
         request.open("GET", "status.php", true)

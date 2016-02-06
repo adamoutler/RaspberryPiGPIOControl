@@ -12,11 +12,9 @@ function lockStatusFile($file) {
     
     //lock the settings file
     $fs=fopen($file ,"w");
-    if(!flock($fs, LOCK_EX, $blocked)) {
-        if (blocked){
-            echo "I'm busy because $file is locked";
-            exit(-1);
-        }
+    if(!flock($fs, LOCK_EX |LOCK_NB)) {
+        echo "I'm busy because $file is locked";
+        exit(-1);
     }
     return $fs;
 }

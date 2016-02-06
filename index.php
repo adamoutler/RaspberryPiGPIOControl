@@ -23,7 +23,7 @@ foreach ($ettings as $section_key => $section ){
       if ($section[invertedOutput]=="1"){
          $out=($value == "1" ? -1 : 1);
       }
-      echo "<div class='".($out == '-1' ?'redImageContainer':'greenImageContainer')."' id='".$section_key."' inverted='".$section['invertedOutput']."'  onclick='change_pin(\"".$section_key."\");'><div  class='caption'>".$section_key."</div></div>\n	" ;
+      echo "<div class='".($out == '-1' ?'redImageContainer':'greenImageContainer')."' id='".$section_key."' inverted='".$section['invertedOutput']."'  onclick='target(\"".$section_key."\");'><div  class='caption'>".$section_key."</div></div>\n	" ;
    
 }
 
