@@ -5,20 +5,20 @@
 
 
 
-//read a value from the GPIO
+//read a value from the GPIO return 1 if high, 0 if low
 function readGPIO($target){
-
     return invert($target, system("/usr/bin/gpio read ".$target["gpioNumber"] ));
 }
 
-//the actual value to be written to the GPIO
+//writes a target GPIO with a commanded state, 1 if high, 0 if low.  Returns commanded state
 function writeGPIO($target, $state){
     return invert($target, system("/usr/bin/gpio write ".$target["gpioNumber"]." ".invert($target, $state) ));
 }
 
+//writes the default value to the target
 function writeDefaultToGPIO($target){
     $state=$target['state'];
-    writeGPIO($target, $state);
+    return writeGPIO($target, $state);
 }
 
 //sets gpio modes
@@ -27,8 +27,8 @@ function setmode($target, $mode){
 }
 
 
-//verify
-function gpio($ettings, $target, $fs ){
+//Takes the settings, a target, and performs an operation.
+function gpio($ettings, $target){
     $tatus=readGPIO($target);
     $gpio=$target['gpioNumber'];
     //read in pic and cmd flags
@@ -43,21 +43,6 @@ function gpio($ettings, $target, $fs ){
         setMode($target, "out");
         //reading pin's status
         //toggle the gpio to high/low
-        
-
-$ss="0";
-$st="1";
-
-$ss=$ss-1;
-$st=$st-1;
-
-if ($ss){
-echo "ss=true $ss";
-}
-if ($st){
-echo "st=true $st";
-}
-            
         $tatus=($tatus=="0" ? 1 : 0);
         //check for commanded status flag
         if ($cmd == "on" ) {
@@ -70,7 +55,6 @@ echo "st=true $st";
         writeGPIO($target,$tatus);
     //reading pin's status
         $status=readGPIO($target);
-        fseek($fs,0);
         writeTimeStamp();
         if (isset($target['timer']) && $target['timer'] > 0){
              usleep($target['timer']*1000000);

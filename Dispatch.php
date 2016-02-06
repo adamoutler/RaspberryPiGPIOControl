@@ -39,7 +39,7 @@ function  dispatch($ettings, $fs){
             $target=$ettings["$name"];
             if ($target["type"] == "gpio"){
                 require ("GPIO.php");
-                gpio($ettings, $target, $fs);
+                gpio($ettings, $target);
             }else {
                 echo "I can't handle anything except GPIOs right now  ".$target['type']."<br>\n";
             }
@@ -50,8 +50,6 @@ function  dispatch($ettings, $fs){
         echo "no parameters specified to dispatch<br>\n";
     }
 }
-
-//echo "mytarget: $target\n";
 
 include_once('writeTimestamp.php');
 dispatch($ettings, $fs);
