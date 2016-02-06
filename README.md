@@ -6,7 +6,7 @@ installation on Raspbian:
 `sudo su`
 
 `apt-get update; sudo apt-get upgrade;
-apt-get install git apache2 php5 libapache2-mod-php5 gnustep-gui-runtime;`
+apt-get install git apache2 php5 libapache2-mod-php5;`
 
 `git clone https://github.com/adamoutler/RaspberryPiGPIOControl.git;
 cp -R ./RaspberryPiGPIOControl/* /var/www/html;
