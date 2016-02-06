@@ -6,7 +6,7 @@ function change_pin(pic) {
     var data = 0;
     //send the pic number to gpio.php for changes
     var request = new XMLHttpRequest();
-    request.open("GET", "gpio.php?pic=" + pic, true);
+    request.open("GET", "Dispatch.php?target=" + pic, true);
     request.send(null);
     //receiving informations
     document.getElementById(pic).className = 
@@ -34,7 +34,7 @@ var timestamp=0
 setInterval(refresh, 1000);
 function refresh() {
     var updateCheck= new XMLHttpRequest();
-    updateCheck.open("GET", "data/lastChange", true);
+    updateCheck.open("GET", "data/lastChange?v=1", true);
     updateCheck.send(null);
     updateCheck.onreadystatechange = function(){
         if (updateCheck.readyState == 4 && updateCheck.status == 200) {
@@ -42,7 +42,7 @@ function refresh() {
              if (currenttimestamp>timestamp){
                  timestamp=currenttimestamp;
                  var request = new XMLHttpRequest();
-                 request.open("GET", "status.php", true);
+                 request.open("GET", "status.php?v=1", true);
                  request.send(null);
         //receiving informations
                  request.onreadystatechange = function() {

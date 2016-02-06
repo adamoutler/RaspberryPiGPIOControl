@@ -2,7 +2,7 @@
 <!--TheFreeElectron 2015, http://www.instructables.com/member/TheFreeElectron/ -->
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="data/css/theme.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/theme.css">
         <meta charset="utf-8" />
         <title>Raspberry Pi Gpio</title>
     </head>
@@ -30,6 +30,6 @@ foreach ($ettings as $section_key => $section ){
 ?>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-	<script src="data/js/script.js"></script>
+	<script src="resources/js/script.js"></script>
     </body>
 </html>
