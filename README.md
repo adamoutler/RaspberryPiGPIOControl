@@ -16,3 +16,8 @@ chmod 755 /home/pi/profile;
 chown pi:pi /home/pi/profile;
 echo 'curl localhost/reset.php >/dev/null 2>&1' >>/etc/profile;
 mesg on;`
+
+
+
+
+Follow directions in Settings.ini to configure your system
