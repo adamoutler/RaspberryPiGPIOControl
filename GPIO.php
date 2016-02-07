@@ -50,6 +50,7 @@ function gpio($ettings, $target){
         writeGPIO($target,$tatus);
     //reading pin's status
         $status=readGPIO($target);
+        echo $status;
         writeTimeStamp();
 
         //only wait to change state if default state is not current state

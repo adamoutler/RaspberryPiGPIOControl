@@ -24,12 +24,11 @@ foreach ($ettings as $section_key => $section ){
          $out=($value == "1" ? -1 : 1);
       }
       echo "<div class='".($out == '-1' ?'redImageContainer':'greenImageContainer')."' id='".$section_key."' inverted='".$section['invertedOutput']."'  onclick='target(\"".$section_key."\");'><div  class='caption'>".$section_key."</div></div>\n	" ;
-   
 }
 
 ?>
-
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-	<script src="resources/js/script.js"></script>
+        <div id="output" class="error" style="display:none"></div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" async></script>
+	<script src="resources/js/script.js" async></script>
     </body>
 </html>

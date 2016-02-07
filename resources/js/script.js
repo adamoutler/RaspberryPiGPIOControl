@@ -9,22 +9,20 @@ function target(target) {
     request.open("GET", "Dispatch.php?target=" + target, true);
     request.send(null);
     //receiving informations
-    document.getElementById(target).className = 
-         (document.getElementById(target).className == "greenImageContainer" ? "redImageContainer" : "greenImageContainer");
+    document.getElementById(target).className = (document.getElementById(target).className == "greenImageContainer" ? "redImageContainer" : "greenImageContainer");
+ 
+
+
     request.onreadystatechange = function() {
-        var request = new XMLHttpRequest();
-        request.open("GET", "status.php", true)
-        request.onreadystatechange = function() {
-            if (request.readyState == 4 && request.status == 200) {
-                refresh();
-            } else if (request.readyState == 4 && request.status == 500) {
-                alert("server error");
-                return ("fail");
-            } else if (request.readyState == 4 && request.status != 200 && request.status != 500) {
-                alert("Could not perform request.");
-                return ("fail");
-            }
+        if ( request.readyState==4 && request.status == 200) {
+            var text=request.responseText;
+            if (text=="0") {text="off"};
+            if (text=="1") {text="on"};
+            document.getElementById("output").innerHTML = target+" commanded "+text ;
+            $('.error').fadeIn(400).delay(3000).fadeOut(400);
+            refresh();
         }
+        
     }
 
     return 0;
@@ -33,6 +31,7 @@ function target(target) {
 var timestamp=0
 setInterval(refresh, 1000);
 function refresh() {
+
     var updateCheck= new XMLHttpRequest();
     updateCheck.open("GET", "data/lastChange?v=1", true);
     updateCheck.send(null);
@@ -48,6 +47,7 @@ function refresh() {
                  request.onreadystatechange = function() {
                  if (request.readyState == 4 && request.status == 200) {
                     var status = JSON.parse(request.responseText);
+
                     for (var item in status) {
                         document.getElementById(item).className = 
                         (status[item].state == 0 ? "redImageContainer" : "greenImageContainer");
