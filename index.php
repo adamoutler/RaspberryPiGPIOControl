@@ -5,6 +5,7 @@
         <link rel="stylesheet" type="text/css" href="resources/css/theme.css">
         <meta charset="utf-8" />
         <title>Raspberry Pi Gpio</title>
+        <meta name="theme-color" content="#000000">
     </head>
     <body>
 	<?php
